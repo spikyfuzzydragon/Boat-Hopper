@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2orc7da6hmfe"]
+
+[ext_resource type="Texture2D" uid="uid://80bgocnxa4c5" path="res://player_grounded.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://ds01g3yefx5xm" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://b4necptlfuh0w" path="res://player_air.png" id="2_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+size = Vector2(127, 318)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqtel"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i3pqv")
+}],
+"loop": true,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4flbx")
+}],
+"loop": true,
+"name": &"ground",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 32)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hqtel")
+animation = &"ground"
+
+[node name="jump" type="Label" parent="."]
+offset_left = -430.0
+offset_top = -271.00003
+offset_right = -368.0
+offset_bottom = -248.00003
+scale = Vector2(5, 5)
+text = "z - Jump"
+
+[node name="turn" type="Label" parent="."]
+offset_left = 1.5258789e-05
+offset_top = -271.00003
+offset_right = 117.000015
+offset_bottom = -248.00003
+scale = Vector2(5, 5)
+text = "x - Turn around"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="win" type="Label" parent="."]
+offset_left = -666.99994
+offset_top = -382.00003
+offset_right = -398.99994
+offset_bottom = -359.00003
+scale = Vector2(5, 5)
+text = "You win! Press space to play again."
